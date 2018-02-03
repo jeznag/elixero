@@ -75,6 +75,9 @@ defmodule EliXero.Utils.Oauth do
   defp rsa_sha1_sign(base_string) do
     hashed = :crypto.hash(:sha, base_string)
 
+    IO.inspect "blah"
+    IO.inspect @private_key
+    IO.inspect Application.get_env(:elixero, :private_key_path)
     {:ok, body} = File.read @private_key
 
     [decoded_key] = :public_key.pem_decode(body)
